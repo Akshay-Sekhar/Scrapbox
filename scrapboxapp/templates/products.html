@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block content %}
+
+<head>
+  <style>
+    body {
+      background-color: #85FFBD;
+      background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+  
+    }
+  </style>
+</head>
+
+{%if messages%}
+    
+
+  {%for m in messages%}
+
+      {%if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>{{m}}</strong> You should check in on some of those fields below.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+      {%endif%}    
+
+      {%if m.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>{{m}}</strong> You should check in on some of those fields below.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+      {%endif%}    
+      
+  {%endfor%}
+
+{%endif%}
+
+  <div class="container mt-5 d-flex justify-content-center">
+    <div class="row mt-5">
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card_p mt-lg-0 mt-md-3 mt-sm-3" style="width: 100%;">
+          <img src="{%static 'scrapboxapp/images/Bikes.jpg'%}" class="card-img-top" alt="">
+          <div class="card-body text-center">
+            <h5 class="card-title mt-2">BIKES</h5>
+            <p class="card-text mt-2">A wide variety of used bikes.</p>
+            <a href="{%url 'bikelist'%}" class="btn btn-primary">Show Bikes</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card_p mt-lg-0 mt-md-3 mt-sm-3" style="width: 100%;">
+          <img src="{%static 'scrapboxapp/images/car.jpg'%}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mt-2">CARS</h5>
+            <p class="card-text text-center mt-2">A wide variety of used cars.</p>
+            <a href="{%url 'carlist'%}" class="btn btn-primary">Show Cars</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card_p mt-lg-0 mt-md-3 mt-sm-3" style="width: 100%;">
+          <img src="{%static 'scrapboxapp/images/mobiles.jpg'%}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mt-2">MOBILES</h5>
+            <p class="card-text text-center mt-2">A wide variety of used mobiles.</p>
+            <a href="{%url 'moblist'%}" class="btn btn-primary">Show Mobiles</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card_p mt-lg-0 mt-md-3 mt-sm-3" style="width: 100%;">
+          <img src="{%static 'scrapboxapp/images/random.jpg'%}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mt-2">RANDOM PRODUCTS</h5>
+            <p class="card-text text-center mt-2">A wide variety of used random products.</p>
+            <a href="{%url 'otherslist'%}" class="btn btn-primary">Show Products</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div> 
+    
+
+{% endblock %}

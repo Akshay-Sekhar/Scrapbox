@@ -1,0 +1,78 @@
+
+
+
+.carousel-item img{
+  height: 400px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  
+}
+
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px; /* Adjust as needed */
+  margin-right: 10px;
+}
+
+.company-name {
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+}
+
+
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex: 1;
+  /* Add other styling for your content area */
+}
+
+.footer {
+  background-color: #333;
+  /* background-color: white; */
+  padding: 10px;
+  text-align: center;
+  margin-top: auto;
+  
+}
+
+.social-icons {
+  font-size: 24px;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+/* Set the color of the Font Awesome icons explicitly */
+.social-icons a i {
+  color: white;
+}
+
