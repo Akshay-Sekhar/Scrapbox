@@ -11,10 +11,11 @@
   
     }
   </style>
+
 </head>
 
 <section class="section about-section gray-bg" id="about">
-    <div class="container">
+    <div class="container shadow bg-white mt-5 w-50">
         <div class="row align-items-center flex-row-reverse">
             <div class="col-lg-6">
                 <div class="about-text go-to">
@@ -48,7 +49,7 @@
                 </div>
                 <div class="mt-5 text-center">
                     <a href="{% url 'profile-update' request.user.profile.id %}">
-                        <button type="submit" class="btn btn-outline-danger mx-auto"><i class="fa-regular fa-user text me-2"></i>Add Details</button>
+                        <button type="submit" class="btn btn-outline-danger mx-auto mb-3"><i class="fa-regular fa-user text me-2"></i>Add Details</button>
                     </a>
                 </div>
             </div>

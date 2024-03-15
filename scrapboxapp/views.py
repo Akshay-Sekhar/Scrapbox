@@ -5,7 +5,7 @@ from django.contrib.auth import logout,authenticate,login
 from django.utils.decorators import method_decorator
 
 from scrapboxapp.forms import RegistrationForm,LoginForm,ProductForm,UserProfileForm
-from scrapboxapp.models import Product,UserProfile
+from scrapboxapp.models import Product,UserProfile,Basket,BasketItem
 
 # Create your views here.
 
@@ -26,13 +26,10 @@ class SignUpView(CreateView):
     def get_success_url(self):
         return reverse("signin")
       
-    
+  
 class SignInView(FormView):
     template_name="login.html"
-    form_class=LoginForm  
-    
-    # def get_success_url(self):
-    #     return reverse("home")  
+    form_class=LoginForm    
     
     def post(self,request,*args, **kwargs):
         form=LoginForm(request.POST)
@@ -42,10 +39,9 @@ class SignInView(FormView):
             user_object=authenticate(request,username=uname,password=pwd)
             if user_object:
                 login(request,user_object)
-                
                 return redirect("home")
-        print("Failed")
-        messages.error(request,"Login failed invalid credentials")
+            
+        messages.error(request,"Login failed, invalid credentials")
         return render(request,"login.html",{"form":form}) 
 
 @method_decorator(signin_required,name="dispatch")    
@@ -201,12 +197,14 @@ class SignOutView(View):
         logout(request)
         return redirect("signin") 
     
-    
+@method_decorator(signin_required,name="dispatch")            
 class ProfileDetailView(DetailView):
     template_name="profile_detail.html"
     model=UserProfile
     context_object_name="data"
     
+    
+@method_decorator(signin_required,name="dispatch")            
 class ProfileUpdateView(UpdateView):
     template_name="profile_edit.html"
     form_class=UserProfileForm
@@ -214,6 +212,31 @@ class ProfileUpdateView(UpdateView):
         
     def get_success_url(self):
         return reverse("profile-detail",kwargs={'pk': self.object.pk})    
+    
+
+class AddToCartView(View) :
+    
+    def get(self,request,*args,**kwargs):
+        id=kwargs.get("pk")
+        qs=Product.objects.get(id=id)
+        return render(request,"scrapboxitem_view.html",{"data":qs})
+    
+    def add_to_cart(self,request,*args,**kwargs):
+                id=kwargs.get("pk")
+                product=Product.objects.get(id=id)
+                cart,created=Basket.objects.get_or_create(user=request.user)
+                cart_item,item_created = BasketItem.objects.get_or_create(cart=cart,product=product)
+                if not item_created:
+                         cart_item.quantity += 1
+                         cart_item.save()
+    
+                return redirect("index")
+            
+class CartListView(View):
+    def get(self,request,*args,**kwargs):
+        qs=Basket.objects.all()
+        return render(request,"cartlist.html",{"data":qs})            
+            
              
             
     

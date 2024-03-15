@@ -4,10 +4,20 @@
 
 
 {% block content %}
+
+<head>
+    <style>
+      body {
+        background-color: #85FFBD;
+        background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+    
+      }
+    </style>
+  </head>
    
 <div class="vh-100 container d-flex flex-column justify-content-center align-items-center mt-5 mb-5">
     <div>
-        <h1 class="text-white fw-bold">Update Your Profile</h1>
+        <h1 class="text-dark fw-bold">Update Your Profile</h1>
     </div>
     <form action="{% url 'profile-update' request.user.profile.id %}" method="post" enctype="multipart/form-data" class="border-0 rounded-3 form-control p-0 w-50 shadow">
         {%csrf_token%}

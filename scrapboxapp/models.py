@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-
+from datetime import datetime
+from django.utils import timezone
 
 # Create your models here.
 
@@ -42,6 +43,31 @@ class Product(models.Model):
     def __str__(self):
         
         return self.name
+    
+    
+class Basket(models.Model):     #cart
+    owner=models.OneToOneField(User,on_delete=models.CASCADE,related_name="cart")
+    is_active=models.BooleanField(default=True)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+
+
+    @property
+    def cart_items(self):
+        qs=self.cartitem.all() #cartitem points to basket of basketitem
+        return qs    
+    
+class BasketItem(models.Model):     #cartitem
+    basket=models.ForeignKey(Basket,on_delete=models.CASCADE,related_name="cartitem")
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    qty=models.PositiveIntegerField(default=1)
+    is_active=models.BooleanField(default=True)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+
+    @property
+    def total(self):
+        return self.qty * self.product.price    
     
   
     

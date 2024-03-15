@@ -16,7 +16,7 @@
     <div class="navbar w-100">
         <div class="logo ms-3">
             <img src="{% static 'scrapboxapp/images/logo.png' %}" alt="Company Logo">
-            <span class="company-name ms-3"><h3>SCRAP KIT</h3></span>
+            <span class="company-name ms-3"><h3>SCRAP DEAL</h3></span>
         </div>
 
 
@@ -25,7 +25,7 @@
                   {{request.user}}
                 </button>
                 <ul class="dropdown-menu text-dark">
-                    <li><a class="dropdown-item mb-2 me-2" href="{%url 'profile-detail' request.user.profile.id%}"><i class="fa-regular fa-user"></i> My Profile</a></li>             
+                  <li><a class="dropdown-item mb-2 me-2" href="{%url 'profile-detail' request.user.profile.id%}"><i class="fa-regular fa-user"></i> My Profile</a></li>             
                   <li><a class="dropdown-item mb-2" href="{%url 'productlist'%}"><i class="fa-solid fa-handshake"></i> Buy Products</a></li>
                   <li><a class="dropdown-item mb-2" href="{%url 'product-add'%}"><i class="fa-solid fa-hand-holding-dollar"></i> Sell Products</a></li>
                   <li><a class="dropdown-item" href="{% url 'signout' %}"><i class="fa-solid fa-power-off"></i> Logout</a></li>

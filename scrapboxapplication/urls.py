@@ -36,6 +36,7 @@ urlpatterns = [
     path('products/<int:pk>/update',views.ProductUpdateView.as_view(),name="product-edit"),
     path('products/<int:pk>/delete',views.ProductDeleteView.as_view(),name="product-delete"),
     path('profile/<int:pk>',views.ProfileDetailView.as_view(),name="profile-detail"),
-    path('profile/<int:pk>/change',views.ProfileUpdateView.as_view(),name="profile-update"),   
+    path('profile/<int:pk>/change',views.ProfileUpdateView.as_view(),name="profile-update"),
+    path('cart/view',views.CartListView.as_view(),name="cart-view"),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
